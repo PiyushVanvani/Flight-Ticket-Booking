@@ -1,0 +1,133 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+struct billing
+{
+    int age;
+    double phone, aadhar;
+    char name[40], b[30];
+};
+
+int system_function(void);
+int password(void);
+
+int main(void)
+{
+    
+    if (password())
+    {
+        system_function();
+    }
+    else
+    {
+        printf("Not Valid!\n");
+    }
+
+    return 0;
+}
+
+int system_function(void)
+{
+    int n;
+    system("clear");  
+    printf("\n---------------------------------------------------------------------");
+    printf("\n                         Enter Details                    \n ");
+    printf("----------------------------------------------------------------------\n");
+
+    printf("Enter No. Of People:");
+    scanf("%d", &n);
+
+    struct billing no[n]; 
+
+    for (int i = 0; i < n; i++)
+    {
+        printf("\nEnter the Customer Age:");
+        scanf("%d", &no[i].age);
+        printf("Enter the Name:");
+        scanf("%s", no[i].name);
+        printf("Enter the Phone, Aadhar No.:");
+        scanf("%lf %lf", &no[i].phone, &no[i].aadhar);
+        printf("Select Option For Payment:\n");
+        printf(" 1.For Cash \n 2.For Online:\n");
+        scanf("%s", no[i].b);
+
+        printf("---------------------------------------------------------------------------\n");
+        printf("\nAge \t   Name\t\t    Phone   \t Aadhar \t    Mode Of Payment:\n");
+        printf("---------------------------------------------------------------------------\n");
+        printf("%d  \t  %s \t   %10.0lf  %12.0lf \t     %s \n", no[i].age, no[i].name, no[i].phone, no[i].aadhar, (strcmp(no[i].b, "1") == 0) ? "Cash" : "Online");
+    }
+    system("clear");  
+
+    printf("\n---------------------------------------------------------------------");
+    printf("\n                         Entered Details                    \n ");
+    printf("----------------------------------------------------------------------\n");
+
+    printf("---------------------------------------------------------------------------\n");
+    printf("\nAge \t   Name\t\t    Phone   \t Aadhar \t    Mode Of Payment:\n");
+    printf("---------------------------------------------------------------------------\n");
+
+    for (int i = 0; i < n; i++)
+    {
+        printf("%d  \t  %s \t   %10.0lf  %12.0lf \t     %s \n", no[i].age, no[i].name, no[i].phone, no[i].aadhar, (strcmp(no[i].b, "1") == 0) ? "Cash" : "Online");
+    }
+}
+
+int password(void) 
+{ 
+ char name[25], pwd[25], ver[25]; 
+ int i, a, digi = 0, up = 0, low = 0, schar = 0; 
+ printf("Enter your name:"); 
+ scanf("%s", name); 
+ printf("Hello %s, enter your password:\n", name); 
+ scanf("%s", pwd); 
+ a = strlen(pwd); 
+ if (a < 5) 
+ { 
+    printf("Error: Password should contain a minimum of 5 characters.\n"); 
+    return 0; 
+ } 
+ else if (a > 12) 
+ { 
+    printf("Error: Password shouldn't exceed 12 characters.\n"); 
+    return 0; 
+ } 
+ else 
+ { 
+    for (i = 0; pwd[i] != '\0'; i++) 
+ { 
+    if (pwd[i] >= 'A' && pwd[i] <= 'Z') 
+    up++; 
+    if (pwd[i] >= 'a' && pwd[i] <= 'z') 
+    low++; 
+    if (pwd[i] >= '0' && pwd[i] <= '9') 
+    digi++; 
+    if (pwd[i] == '@' || pwd[i] == '#' || pwd[i] == '$' || pwd[i] == '&') 
+    schar++; 
+ } 
+    if (up == 0) 
+    printf("There must be at least one uppercase.\n"); 
+    if (low == 0) 
+    printf("There must be at least one lowercase.\n"); 
+    if (digi == 0) 
+    printf("There must be at least one digit.\n"); 
+    if (schar == 0) 
+    printf("There must be at least one special character.\n"); 
+ else 
+ { 
+    printf("Confirm your password:\n"); 
+    scanf("%s", ver); 
+    if (strcmp(pwd, ver) == 0) 
+ { 
+    printf("Welcome %s, your password is verified.\n", name); 
+    return 1; 
+ } 
+ else 
+ { 
+ printf("Password did not match.\n"); 
+ return 0; 
+ } 
+ } 
+ } 
+ return 0; 
+}
